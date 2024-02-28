@@ -1,24 +1,9 @@
 # Entrega-2-iot
 Repositorio para la entrega de la segunda práctica en la asignatura de Desarrollo de aplicaciones IOT
-
-comandos para actualiza y crear el contenedor:
-
-# Detener el contenedor
-docker stop entrega2
-
-# Eliminar el contenedor
-docker rm entrega2
-
-# Reconstruir la imagen (si es necesario)
-docker build -t entrega2 .
-
-# Crear y ejecutar el contenedor actualizado
-docker run --name entrega2 -d entrega2
-
-
-
-
-# INSTALACIÓN MQTT MOSQUITTO
+# Miembros del equipo
+    ** Claudia Viñals PErlado **
+# Explicación de los pasos seguidos
+## A. INSTALACIÓN MQTT MOSQUITTO
 
 Para instalar Mosquitto MQTT en Ubuntu, puedes seguir estos pasos:
 
@@ -47,7 +32,14 @@ Para instalar Mosquitto MQTT en Ubuntu, puedes seguir estos pasos:
     ```bash
     sudo systemctl enable mosquitto
     ```
+## B. Certificados
+1. **Generar certificados por comandos**: esto puede ser más complicado pero en este [enlace](https://blog.parravidales.es/aumenta-la-seguridad-de-mosquitto-anadiendo-tls/) explica como hacerlo paso a paso
+2.   **Crear certificados por medio de archivo generate_certificates.sh**: Esto hace menos tedioso y complicado la generación de estos por linea de comandos y que sea mucho más sencillo
 
+• Instrucciones de uso
+• Posibles vías de mejora
+• Problemas / Retos encontrados
+• Alternativas posibles
 # EJECUTAR POR TERMINAL SIN SEGURIDAD
 1. Suscríbete a un tema:
 
