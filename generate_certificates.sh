@@ -1,15 +1,27 @@
-#!/bin/bash
+# Directorio donde se guardarán los certificados y claves
+CERT_DIR="/home/cvp/repos/Entrega-2-iot/app/certs"
 
-# Crear una autoridad de certificación (CA)
-openssl genrsa -out ca.key 2048
-openssl req -new -x509 -days 365 -key ca.key -out ca.crt
+# Crear el directorio si no existe
+mkdir -p "$CERT_DIR"
 
-# Generar el certificado del broker MQTT
-openssl genrsa -out server.key 2048
-openssl req -new -key server.key -out server.csr
-openssl x509 -req -days 365 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
+# Generar un certificado de autoridad (CA)
+openssl req -new -x509 -days 3650 -extensions v3_ca -keyout "$CERT_DIR/ca.key" -out "$CERT_DIR/ca.crt" -subj "/CN=MyCA/OU=MyOrganization/C=US"
 
-# Generar certificados para los clientes (publicadores y suscriptores)
-openssl genrsa -out client.key 2048
-openssl req -new -key client.key -out client.csr
-openssl x509 -req -days 365 -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt
+# Generar una clave privada y un certificado autofirmado para el servidor
+openssl req -new -nodes -newkey rsa:2048 -keyout "$CERT_DIR/server.key" -out "$CERT_DIR/server.csr" -subj "/CN=localhost"
+openssl x509 -req -days 365 -in "$CERT_DIR/server.csr" -CA "$CERT_DIR/ca.crt" -CAkey "$CERT_DIR/ca.key" -CAcreateserial -out "$CERT_DIR/server.crt"
+
+# Limpiar archivos temporales
+rm "$CERT_DIR/server.csr" "$CERT_DIR/ca.srl"
+
+# Generar una clave privada y un certificado autofirmado para el cliente
+openssl req -new -nodes -newkey rsa:2048 -keyout "$CERT_DIR/client.key" -out "$CERT_DIR/client.csr" -subj "/CN=Client"
+openssl x509 -req -days 365 -in "$CERT_DIR/client.csr" -CA "$CERT_DIR/ca.crt" -CAkey "$CERT_DIR/ca.key" -CAcreateserial -out "$CERT_DIR/client.crt"
+
+# Limpiar archivos temporales
+rm "$CERT_DIR/client.csr" "$CERT_DIR/ca.srl"
+
+# Establecer los permisos adecuados
+chmod 600 "$CERT_DIR"/*.key
+
+echo "Certificados y claves generados con éxito en $CERT_DIR"
