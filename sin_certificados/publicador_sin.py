@@ -35,7 +35,7 @@ import time
 # port = 1883
 
 
-broker_hostname = "localhost"
+broker_address = "172.28.128.1"
 port = 1883 
 
 def on_connect(client, userdata, flags, return_code):
@@ -49,7 +49,7 @@ client = mqtt_client.Client(mqtt_client.CallbackAPIVersion.VERSION1, client_id)
 # client.username_pw_set(username="user_name", password="password") # uncomment if you use password auth
 client.on_connect = on_connect
 
-client.connect(broker_hostname, port)
+client.connect(broker_address, port)
 client.loop_start()
 
 topic = "Test"

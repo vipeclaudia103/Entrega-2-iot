@@ -1,35 +1,4 @@
-# import ssl
-# import paho.mqtt.client as mqtt
 
-# # Configuración del cliente MQTT
-# broker_address = "localhost"
-# port = 8883
-# cert_path = "/usr/src/app/certs/client.crt"
-# key_path = "/usr/src/app/certs/client.key"
-# ca_cert = "/usr/src/app/certs/ca.crt"
-# topic = "topic/test"
-
-# # Función de conexión al broker MQTT
-# def on_connect(client, userdata, flags, rc):
-#     print("Conectado al broker MQTT con resultado " + str(rc))
-#     # Suscribirse al tema
-#     client.subscribe(topic)
-
-# # Función para manejar los mensajes recibidos
-# def on_message(client, userdata, msg):
-#     print("Mensaje recibido: " + msg.topic + " " + str(msg.payload))
-
-# # Configurar el cliente MQTT con TLS/SSL
-# client = mqtt.Client()
-# client.tls_set(ca_certs=ca_cert, certfile=cert_path, keyfile=key_path, cert_reqs=ssl.CERT_REQUIRED, tls_version=ssl.PROTOCOL_TLS)
-# client.on_connect = on_connect
-# client.on_message = on_message
-
-# # Conectar al broker MQTT
-# client.connect(broker_address, port)
-
-# # Iniciar el bucle de red para manejar la comunicación con el broker
-# client.loop_forever()
 
 from paho.mqtt import client as mqtt_client
 import random
@@ -48,7 +17,7 @@ def on_message(client, userdata, message):
     print("Received message: ", str(message.payload.decode("utf-8")))
 
 
-broker_hostname ="localhost"
+broker_hostname = "172.28.128.1"
 port = 1883 
 
 client_id = f'python-mqtt-{random.randint(0, 1000)}'

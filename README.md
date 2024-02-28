@@ -33,10 +33,20 @@ Para instalar Mosquitto MQTT en Ubuntu, puedes seguir estos pasos:
     sudo systemctl enable mosquitto
     ```
 ## B. Certificados
+Existen dos opciones a la hora de crear los certificados:
 1. **Generar certificados por comandos**: esto puede ser más complicado pero en este [enlace](https://blog.parravidales.es/aumenta-la-seguridad-de-mosquitto-anadiendo-tls/) explica como hacerlo paso a paso
-2.   **Crear certificados por medio de archivo generate_certificates.sh**: Esto hace menos tedioso y complicado la generación de estos por linea de comandos y que sea mucho más sencillo
+2.   **Crear certificados por medio de archivo generate_certificates.sh**: Esto hace menos tedioso y complicado la generación de estos por linea de comandos y que sea mucho más sencillo. Comandos a ejecutar para ello:
 
-• Instrucciones de uso
+
+
+
+# Instrucciones de uso
+## IP de WSL
+Poner la IP de la dirección en WSL para ello usar el comando 
+    ```bash
+    ip route show | grep -i default | awk '{ print $3}'
+    ```
+
 • Posibles vías de mejora
 • Problemas / Retos encontrados
 • Alternativas posibles
