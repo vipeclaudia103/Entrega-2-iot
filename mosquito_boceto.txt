@@ -1,0 +1,30 @@
+# Restringimos las conexiones inseguras a la red local
+# IP ordenador 10.3.20.3
+#listener 1883 172.28.128.1
+
+# Habilitar el cifrado TLS
+# Especifica el puerto por el que escucha mosquitto
+listener 8883 0.0.0.0
+
+# Define las configuraciones específicas para cada puerto en el que Mosquitto esté escuchando.
+per_listener_settings true
+
+# Deshabilita la conexión anónima al Broker, así solo los clientes autenticados podrán conectarse
+allow_anonymous false
+
+# Dirección al archivo de contraseñas para autenticar a los clientes
+password_file /home/cvp/repos/Entrega-2-iot/app/certs/passwd
+
+# Indica que los clientes requieren de autenticación
+require_certificate true
+# Ruta al archivo de certificado de la autoridad de certificación (CA)
+# Utilizado para verificar los certificados de los clientes durante la autenticación
+cafile /home/cvp/repos/Entrega-2-iot/app/certs/ca.crt
+
+# Ruta al certificado para el servidor de Mosquitto
+# Se presenta a los clientes durante el proceso de conexión
+certfile /home/cvp/repos/Entrega-2-iot/app/certs/server.crt
+
+# Ruta de la clave privada que corresponde al servidor Mosquitto
+# Es necesaria para establecer la conexión segura de TLS
+keyfile /home/cvp/repos/Entrega-2-iot/app/certs/server.key
