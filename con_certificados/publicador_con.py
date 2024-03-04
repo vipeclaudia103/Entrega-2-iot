@@ -3,14 +3,14 @@ import random
 from paho.mqtt import client as mqtt_client
 
 # Configuración del cliente MQTT
-broker_address = "172.28.128.1"
+broker_address = "Entrega-2"
 port = 8883
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 username = "admin"  # Opcional, dependiendo de la configuración del broker
 password = "admin" # Opcional, dependiendo de la configuración del broker
-cert_path = "/home/cvp/repos/Entrega-2-iot/app/certs/client.crt"
-key_path = "/home/cvp/repos/Entrega-2-iot/app/certs/client.key"
-ca_cert = "/home/cvp/repos/Entrega-2-iot/app/certs/ca.crt"
+cert_path = "/home/cvp/Entrega-2-iot/mosquitto/certs/ClaudiaPortatil3.crt"
+key_path = "/home/cvp/Entrega-2-iot/mosquitto/certs/ClaudiaPortatil3.key"
+ca_cert = "/home/cvp/Entrega-2-iot/mosquitto/certs/ca.crt"
 
 
 # Función de conexión al broker MQTT

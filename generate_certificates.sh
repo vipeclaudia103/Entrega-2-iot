@@ -1,5 +1,9 @@
 # Directorio donde se guardarán los certificados y claves
-CERT_DIR="/home/cvp/repos/Entrega-2-iot/app/certs"
+#CERT_DIR="/home/cvp/Entrega-2-iot/app/certs"
+CERT_DIR="/home/cvp/Entrega-2-iot/mosquitto/certs"
+
+# Nombre del cliente base
+CLIENT_BASE_NAME="ClaudiaPortatil"
 
 # Crear el directorio si no existe
 mkdir -p "$CERT_DIR"
@@ -14,12 +18,14 @@ openssl x509 -req -days 365 -in "$CERT_DIR/server.csr" -CA "$CERT_DIR/ca.crt" -C
 # Limpiar archivos temporales
 rm "$CERT_DIR/server.csr" "$CERT_DIR/ca.srl"
 
-# Generar una clave privada y un certificado autofirmado para el cliente
-openssl req -new -nodes -newkey rsa:2048 -keyout "$CERT_DIR/client.key" -out "$CERT_DIR/client.csr" -subj "/CN=Client"
-openssl x509 -req -days 365 -in "$CERT_DIR/client.csr" -CA "$CERT_DIR/ca.crt" -CAkey "$CERT_DIR/ca.key" -CAcreateserial -out "$CERT_DIR/client.crt"
-
-# Limpiar archivos temporales
-rm "$CERT_DIR/client.csr" "$CERT_DIR/ca.srl"
+# Generar claves privadas y certificados autofirmados para cada cliente
+for ((i=1; i<=4; i++)); do
+    CLIENT_NAME="${CLIENT_BASE_NAME}${i}"
+    openssl req -new -nodes -newkey rsa:2048 -keyout "$CERT_DIR/$CLIENT_NAME.key" -out "$CERT_DIR/$CLIENT_NAME.csr" -subj "/CN=$CLIENT_BASE_NAME"
+    openssl x509 -req -days 365 -in "$CERT_DIR/$CLIENT_NAME.csr" -CA "$CERT_DIR/ca.crt" -CAkey "$CERT_DIR/ca.key" -CAcreateserial -out "$CERT_DIR/$CLIENT_NAME.crt"
+    # Limpiar archivos temporales
+    rm "$CERT_DIR/$CLIENT_NAME.csr"
+done
 
 # Establecer los permisos adecuados
 chmod 600 "$CERT_DIR"/*.key
