@@ -9,9 +9,9 @@ port = 8883
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 username = "admin"  # Opcional, dependiendo de la configuración del broker
 password = "admin"  # Opcional, dependiendo de la configuración del broker
-cert_path = "/home/cvp/Entrega-2-iot/mosquitto/certs/ClaudiaPortatil4.crt"
-key_path = "/home/cvp/Entrega-2-iot/mosquitto/certs/ClaudiaPortatil4.key"
-ca_cert = "/home/cvp/Entrega-2-iot/mosquitto/certs/ca.crt"
+cert_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil2.crt"
+key_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil2.key"
+ca_cert = "/home/cvp/Entrega-2-iot/certs_clientes/ca.crt"
 topic = "topic/test"
 
 # Función de conexión al broker MQTT

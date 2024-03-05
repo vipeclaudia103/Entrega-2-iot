@@ -1,7 +1,7 @@
 # Entrega-2-iot
 Repositorio para la entrega de la segunda práctica en la asignatura de Desarrollo de aplicaciones IOT
 # Miembros del equipo
-    ** Claudia Viñals PErlado **
+    ** Claudia Viñals Perlado **
 # Explicación de los pasos seguidos
 ## A. Entorno
 1. Crear [docker-compose.yaml](Entrega-2-iot/docker-compose.yaml) con las configuraciones de mosquitto.
@@ -61,23 +61,25 @@ Comandos para editar el documento:
 Las dirección donde esta el broker no es la misma que la del ordenador por ello hay que consultar la ip y ponerla en el archivo de python como tambien cuando se consulta por consola, para ello usar el comando. 
     ```bash
     ip route show | grep -i default | awk '{ print $3}'
+    docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mosquitto
     ```
     [Fuente](https://learn.microsoft.com/es-es/windows/wsl/networking)
 
 • Posibles vías de mejora
 • Problemas / Retos encontrados
 • Alternativas posibles
-# EJECUTAR POR TERMINAL SIN SEGURIDAD
+# EJECUTAR POR TERMINAL CON SEGURIDAD
 1. Suscríbete a un tema:
 
     ```bash
-    mosquitto_sub -h localhost -t saludo
+    echo "Hola MQTT" | mosquitto_sub -h 172.18.0.2 -p 8883 --cafile /home/cvp/Entrega-2-iot/certs_clientes/ca.crt --cert /home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil3.crt --key client.key -t "topic/1" -l && mosquitto_sub -h 172.18.0.2 -p 8883 --cafile /home/cvp/Entrega-2-iot/certs_clientes/ca.crt --cert /home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil3.crt --key client.key -t "topic/1"
+
     ```
 
 2. Publica un mensaje en el mismo tema:
 
     ```bash
-    mosquitto_pub -h localhost -t saludo -m "Hola estas suscrito al topic saludo de MQTT!"
+     docker exec -it mosquitto mosquitto_pub -h Entrega-2 -p 8883 --cafile /home/cvp/Entrega-2-iot/mosquitto/server_certs/ca.crt --cert /home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil3.crt --key /home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil3.key -t "topic/1" -l 
     ```
 
     Si todo está configurado correctamente, deberías ver el mensaje "Hello, MQTT!" en la primera terminal donde te has suscrito.

@@ -9,11 +9,10 @@ services:  # Definición de los servicios que se ejecutarán
       - TZ=Europe/Madrid  # Configuración de la zona horaria del contenedor (opcional)
     volumes:  # Volumenes para montar directorios del host en el contenedor
       - /home/cvp/Entrega-2-iot/mosquitto/config:/mosquitto/config  # Montaje del directorio de configuración del servidor Mosquitto y almacena los certificados
-      - /home/cvp/Entrega-2-iot/mosquitto/data:/mosquitto/data  # Montaje del directorio de datos del servidor Mosquitto
-      - /home/cvp/Entrega-2-iot/mosquitto/log:/mosquitto/log  # Montaje del directorio de logs del servidor Mosquitto
-      - /home/cvp/Entrega-2-iot/mosquitto/certs:/mosquitto/certs  # Montaje del directorio de logs del servidor Mosquitto
-      
-     # - /home/cvp/Entrega-2-iot/app/contras:/mosquitto/config/passwd
+      #- /home/cvp/Entrega-2-iot/mosquitto/data:/mosquitto/data  # Montaje del directorio de datos del servidor Mosquitto
+      #- /home/cvp/Entrega-2-iot/mosquitto/log:/mosquitto/log  # Montaje del directorio de logs del servidor Mosquitto
+      - /home/cvp/Entrega-2-iot/mosquitto/server_certs:/mosquitto/certs  # Montaje del directorio de logs del servidor Mosquitto
+      # - /home/cvp/Entrega-2-iot/mosquitto/config/passwd:/mosquitto/config/passwd
 
     ports:  # Mapeo de puertos entre el host y el contenedor
       - 8883:8883  # Puerto 8883 del host mapeado al puerto 8883 del contenedor para conexiones MQTT sobre TLS

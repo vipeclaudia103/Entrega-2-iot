@@ -3,14 +3,14 @@ import random
 from paho.mqtt import client as mqtt_client
 
 # Configuración del cliente MQTT
-broker_address = "Entrega-2"
+broker_address = "ClaudiaPortatil"
 port = 8883
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 username = "admin"  # Opcional, dependiendo de la configuración del broker
 password = "admin" # Opcional, dependiendo de la configuración del broker
-cert_path = "/home/cvp/Entrega-2-iot/mosquitto/certs/ClaudiaPortatil3.crt"
-key_path = "/home/cvp/Entrega-2-iot/mosquitto/certs/ClaudiaPortatil3.key"
-ca_cert = "/home/cvp/Entrega-2-iot/mosquitto/certs/ca.crt"
+cert_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil1.crt"
+key_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil1.key"
+ca_cert = "/home/cvp/Entrega-2-iot/certs_clientes/ca.crt"
 
 
 # Función de conexión al broker MQTT
@@ -26,6 +26,8 @@ def on_message(client, userdata, msg):
 # Configurar el cliente MQTT con TLS/SSL
 client = mqtt_client.Client(mqtt_client.CallbackAPIVersion.VERSION1, client_id)
 client.tls_set(ca_certs=ca_cert, certfile=cert_path, keyfile=key_path, cert_reqs=ssl.CERT_REQUIRED, tls_version=ssl.PROTOCOL_TLS)
+client.tls_insecure_set(True)
+
 client.on_connect = on_connect
 client.on_message = on_message
 
