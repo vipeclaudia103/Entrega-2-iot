@@ -1,7 +1,7 @@
 # Detalles del equipo
 - **Miembros del equipo:** [Lista de miembros del equipo]
 - **Tiempo invertido:** 24 horas
-
+- **Repositorio**: (git_Hub)[https://github.com/vipeclaudia103/Entrega-2-iot.git]
 # Explicación de los pasos seguidos
 ## Resumen
 1. Estudio de certificados y estructura de conexión.
