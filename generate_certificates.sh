@@ -44,16 +44,16 @@ echo "Certificados y claves del servidor generados con éxito en $SERVER_CERT_DI
 i=1
 while [ $i -le 4 ]; do
     CLIENT_NAME="${CLIENT_BASE_NAME}${i}"
-    openssl req -new -nodes -newkey rsa:2048 -keyout "$CLIENT_CERT_DIR/$CLIENT_NAME.key" -out "$CLIENT_CERT_DIR/$CLIENT_NAME.csr" -subj "/CN=$SERVER_CERT_DIR"
-    openssl x509 -req -days 365 -in "$CLIENT_CERT_DIR/$CLIENT_NAME.csr" -CA "$SERVER_CERT_DIR/ca.crt" -CAkey "$SERVER_CERT_DIR/ca.key" -CAcreateserial -out "$CLIENT_CERT_DIR/$SERVER_CERT_DIR.crt"
+    openssl req -new -nodes -newkey rsa:2048 -keyout "$CLIENT_CERT_DIR/$CLIENT_NAME.key" -out "$CLIENT_CERT_DIR/$CLIENT_NAME.csr" -subj "/CN=$CLIENT_NAME"
+    openssl x509 -req -days 365 -in "$CLIENT_CERT_DIR/$CLIENT_NAME.csr" -CA "$SERVER_CERT_DIR/ca.crt" -CAkey "$SERVER_CERT_DIR/ca.key" -CAcreateserial -out "$CLIENT_CERT_DIR/$CLIENT_NAME.crt"
     # Limpiar archivos temporales
     rm "$CLIENT_CERT_DIR/$CLIENT_NAME.csr"
     i=$((i + 1))
 done
 
 # Copiar los certificados de los clientes al directorio del servidor
-cp "$CLIENT_CERT_DIR"/*.crt "$CERT_DIR"
-cp "$CLIENT_CERT_DIR"/*.key "$CERT_DIR"
+cp "$CLIENT_CERT_DIR"/*.crt "$SERVER_CERT_DIR"
+cp "$CLIENT_CERT_DIR"/*.key "$SERVER_CERT_DIR"
 
 # Establecer los permisos adecuados para el servidor
 chmod 600 "$SERVER_CERT_DIR"/*.key

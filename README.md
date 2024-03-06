@@ -58,7 +58,7 @@ Existen dos opciones para crear los certificados:
     Después de generar los certificados, se puede configurar la autenticación por usuarios con el siguiente comando:
     ```bash
     docker exec -it mosquitto sh
-    mosquitto_passwd -c /mosquitto/config/passwd.txt admin
+    mosquitto_passwd -c /mosquitto/config/passwd admin
     ```
     Reemplazar `admin` con el nombre de usuario y seguir las instrucciones para establecer la contraseña.
 
