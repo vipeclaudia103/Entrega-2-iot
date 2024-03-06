@@ -152,5 +152,4 @@ El segmento de código y texto proporcionado está bien estructurado y ofrece in
 ## Alternativas posibles
 - **Encriptación de datos de extremo a extremo:** Además de implementar seguridad en la capa de transporte, considera la posibilidad de cifrar los datos de extremo a extremo utilizando algoritmos como AES. Esto proporciona una capa adicional de seguridad para proteger los datos mientras están en tránsito y en reposo.
 - **Firewalls y políticas de seguridad de red:** Junto con las medidas de seguridad en la aplicación y en la capa de transporte, implementa firewalls y políticas de seguridad de red para controlar y monitorear el tráfico MQTT. Esto puede ayudar a prevenir ataques externos y garantizar la integridad de la red y los datos.
-
-Al considerar estas sugerencias de mejora y alternativas posibles, podrás fortalecer la seguridad y la eficiencia de tu sistema MQTT, así como abordar los desafíos y obstáculos identificados durante el desarrollo y la implementación.
+- **OAuth**: protocolo de autorización que permite a las aplicaciones obtener acceso limitado a recursos en un servidor en nombre de un propietario de recursos. Puedes utilizar OAuth para autorizar el acceso a tu servidor MQTT en lugar de depender únicamente de certificados.
