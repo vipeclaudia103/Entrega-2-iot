@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiamos los archivos de Python al directorio de trabajo del contenedor
 COPY /app/* /app/
 
-# Ejecutamos los archivos de Python
+# Ejecutamos el script de publicación de Python
 CMD ["python", "/app/publicador_con.py"]
+# Si deseas ejecutar el script de subscripción en su lugar, comenta la línea anterior y descomenta la siguiente:
 CMD ["python", "/app/subscriptor_con.py"]

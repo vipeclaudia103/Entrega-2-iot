@@ -12,8 +12,8 @@ MQTT_TOPIC = "reto2"
 client_id = f'python-mqtt-{random.randint(0, 1000)}'
 username = "admin"  # Opcional, dependiendo de la configuración del broker
 password = "admin"  # Opcional, dependiendo de la configuración del broker
-cert_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil2.crt"
-key_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil2.key"
+cert_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil1.crt"
+key_path = "/home/cvp/Entrega-2-iot/certs_clientes/ClaudiaPortatil1.key"
 ca_cert = "/home/cvp/Entrega-2-iot/mosquitto/server_certs/ca.crt"
 
 # Función de conexión al broker MQTT

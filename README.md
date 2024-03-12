@@ -58,7 +58,7 @@ Existen dos opciones para crear los certificados:
     Después de generar los certificados, se puede configurar la autenticación por usuarios con el siguiente comando:
     ```bash
     docker exec -it mosquitto sh
-    mosquitto_passwd -c /mosquitto/config/passwd admin
+    mosquitto_passwd -c /mosquitto/passwd admin
     ```
     Reemplazar `admin` con el nombre de usuario y seguir las instrucciones para establecer la contraseña.
 
@@ -92,12 +92,12 @@ docker exec -it mosquitto sh
 
 1. Publicar un mensaje en el mismo tema:
 ```bash
-echo "Hola MQTT" | mosquitto_sub -h Entrega-2 -p 8883 --cafile /mosquitto/certs/ca.crt --cert /mosquitto/certs/ClaudiaPortatil3.crt --key /mosquitto/certs/ClaudiaPortatil3.key --username admin --pw admin -t "topic/1"
+echo "Hola MQTT" | mosquitto_sub -h Entrega-2 -p 8883 --cafile /mosquitto/certs/ca.crt --cert /mosquitto/certs/ClaudiaPortatil3.crt --key /mosquitto/certs/ClaudiaPortatil3.key --username admin --pw admin -t "topic/1" -m "¡Hola! Estás suscrito al topic saludo de MQTT."
 ```
 
 2. Suscribirse a un tema:
 ```bash
-mosquitto_sub -h Entrega-2 -p 8883 --cafile /home/cvp/Entrega-2-iot/mosquitto/server_certs/ca.crt --cert /mosquitto/certs/ClaudiaPortatil4.crt --key /mosquitto/certs/ClaudiaPortatil4.key --username admin --pw admin -t "topic/1"
+mosquitto_sub -h Entrega-2 -p 8883 --cafile /home/cvp/Entrega-2-iot/mosquitto/server_certs/ca.crt --cert /mosquitto/certs/ClaudiaPortatil4.crt --key /mosquitto/certs/ClaudiaPortatil4.key --username admin --pw admin -t "topic/1" -m "¡Hola! Estás suscrito al topic saludo de MQTT."
 ```
 
 Si todo está configurado correctamente, deberías ver el mensaje "Hola MQTT" en la primera terminal donde te has suscrito.
